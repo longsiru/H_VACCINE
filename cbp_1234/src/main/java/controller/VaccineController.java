@@ -1,14 +1,14 @@
 package controller;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.VaccineDAO;
-/**
- * Servlet implementation class VaccineController
- */
+
 @WebServlet("/")
 public class VaccineController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,13 +20,14 @@ public class VaccineController extends HttpServlet {
 		doPor(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		doPor(request, response);
 	}
 	
 	protected void doPor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String context = request.getContextPath();
 		String command = request.getServletPath();
-		String site = null;
+		String site = "";  //有eles的时候写site=null， 没有的时候写“”空值。 
 		
 		VaccineDAO vaccine = new VaccineDAO();
 		
@@ -38,7 +39,26 @@ public class VaccineController extends HttpServlet {
 			site= "reserv.jsp";
 			break;
 		case "/insert":
-			site = vaccine.insert(request, response);
+			int result = vaccine.insert(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+		
+			PrintWriter out = response.getWriter();
+			if(result == 1) {
+				out.println("<script>");
+				out.println("alert('접종예약정보가 등록 되었습니다!'); location.href='" + context + "';");
+				out.println("</script>");
+				out.flush();
+			}
+//			site= "reserv.jsp";
+			break;
+			
+		case "/inquire":
+			site = "inquire.jsp";
+			break;
+			
+		case "/select":
+			site = vaccine.select(request, response); 
+			
 			break;
 		}
 		getServletContext().getRequestDispatcher("/" + site).forward(request, response);

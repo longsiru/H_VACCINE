@@ -1,0 +1,15 @@
+package DTO;
+
+public class Query {
+	String pname;
+	String jumin;
+	String tel;
+	String resvdate;
+	String resvtime;
+	String hospname;
+	String hosptel;
+	String hospaddr;
+	String vcode;
+	
+	
+}

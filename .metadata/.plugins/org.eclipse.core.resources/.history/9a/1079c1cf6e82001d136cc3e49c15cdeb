@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+ 
+ function fn_submit(){
+	alert("11");
+	var fn = document.frm;
+	
+	if(fn.resvno.value == ""){
+		alter("접종예약번호가 입력되지 않았습니다!");
+		fn.resvno.focus();
+		return false;
+	}
+	
+	if(fn.jumin.value == ""){
+		alter("주민번호가 입력되지 않았습니다!");
+		fn.jumin.focus();
+		return false;
+	}
+	
+	fn_submit();
+}

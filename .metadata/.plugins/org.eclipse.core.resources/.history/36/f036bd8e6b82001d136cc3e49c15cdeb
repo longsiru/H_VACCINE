@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+ 
+ function fn_submit(){
+	var fn = document.frm;
+	
+	if(fn.resvno.value == ""){
+		alter("접종예약번호가 입력되지 않았습니다!")
+		fn.resvno.focus();
+		return false;
+	}
+}

@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%@ include file="top.jsp" %>
+	<section>
+		<div class="title">접종예약조회</div>
+		<form action=""> //action:自己指定的网页网址的后面的名字。
+		
+		</form>
+	</section>
+	<%@ include file="footer.jsp" %>
+</body>
+</html>
